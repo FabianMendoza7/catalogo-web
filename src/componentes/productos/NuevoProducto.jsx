@@ -1,10 +1,10 @@
 import { useState } from 'react';
-// import { useNavigate  } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import clienteAxios from '../../config/axios';
 
 function NuevoProducto({ cerrarModal }) {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [producto, guardarProducto] = useState({
         nombre: '',
         descripcion: '',
@@ -28,7 +28,7 @@ function NuevoProducto({ cerrarModal }) {
             }
 
             // Redireccionar.
-            //navigate('/productos');
+            navigate('/productos');
 
             cerrarModal();
 

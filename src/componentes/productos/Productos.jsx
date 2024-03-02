@@ -5,41 +5,13 @@ import NuevoProducto from './NuevoProducto';
 import clienteAxios from '../../config/axios';
 import Producto from './Producto';
 import Spinner from '../layout/Spinner';
-// import { CRMContext } from '../../context/CRMContext';
+import { CatalogoContext } from '../../context/catalogoContext';
 
-function Productos(props) {
+function Productos() {
     const [productos, guardarProductos] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
-    // const [auth, guardarAuth ] = useContext( CRMContext );
-
-    // useEffect para consultar api cuando cargue.
-    useEffect( () => {
-
-        // if(auth.token !== '') {
-            // Query a la API
-            const consultarAPI = async () => {
-                try {
-                    const productosConsulta = await clienteAxios.get('/productos'/*, {
-                        headers: {
-                            Authorization : `Bearer ${auth.token}`
-                        }
-                    }*/);
-                    guardarProductos(productosConsulta.data);
-                } catch (error) {
-                    // Error con authorizacion
-                    if(error.response.status = 500) {
-                        navigate('/iniciar-sesion');
-                    }
-                }
-            }
-            // Llamado a la api.
-            consultarAPI();
-
-        // }else {
-        //      navigate('/iniciar-sesion');
-        // }
-    }, [productos]);
+    const [auth, guardarAuth ] = useContext(CatalogoContext );
 
     const abrirModal = () => {
         setModalOpen(true);
@@ -47,26 +19,49 @@ function Productos(props) {
 
     const cerrarModal = () => {
         setModalOpen(false);
-    };    
+    };
 
-    // Si el state esta como false.
-    // if(!auth.auth) {
-    //     navigate('/iniciar-sesion');
-    // }
+    // Consultar la API al cargar.
+    useEffect( () => {
 
+        if(auth.token !== '') {
+            // Query a la API.
+            const consultarAPI = async () => {
+                try {
+                    const productosConsulta = await clienteAxios.get('/productos', {
+                        headers: {
+                            Authorization : `Bearer ${auth.token}`
+                        }
+                    });
+                    guardarProductos(productosConsulta.data);
 
-    // spinner de carga
+                } catch (error) {
+                    // Error con authorización.
+                    if(error.response.status = 500) {
+                        navigate('/iniciar-sesion');
+                    }
+                }
+            }
+            // Llamado a la API.
+            consultarAPI();
+
+        } else {
+            navigate('/iniciar-sesion');
+        }
+    }, [productos]);
+
+    // Requerir iniciar sesión si el state está como false.
+    if(!auth.auth) {
+        navigate('/iniciar-sesion');
+    }
+
+    // Spinner de carga.
     if(!productos.length) return <Spinner /> 
-
 
     return (
         <>
             <h2>Productos</h2>
 
-            {/* <Link to={'/productos/nuevo'} className="btn btn-verde nvo-cliente"> 
-                <i className="fas fa-plus-circle"></i>
-                Nuevo Producto
-            </Link> */}
             <Link to="#" className="btn btn-verde nvo-cliente" onClick={abrirModal}>
                 <i className="fas fa-plus-circle"></i>
                 Nuevo Producto
@@ -87,12 +82,12 @@ function Productos(props) {
                 style={{ content: { width: '55%', height: '80%', margin: 'auto', transition: 'opacity 300ms ease-in-out', position: 'relative' } }}
             >
                 <button 
-                    className="btn btn-rojo btn-eliminar"
+                    className="btn btn-amarillo btn-cerrar"
                     onClick={() => setModalOpen(false)}
                     style={{
                         position: 'absolute',
-                        top: '10px',  // Ajusta este valor según tu preferencia
-                        right: '17px',  // Ajusta este valor según tu preferencia
+                        top: '10px',
+                        right: '17px',
                         width: '40px',
                         height: '45px'
                     }}>

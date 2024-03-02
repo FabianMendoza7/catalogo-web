@@ -1,6 +1,4 @@
 import { useContext } from 'react';
-
-// Routing
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 /*** Layout */
@@ -11,20 +9,18 @@ import Navegacion from './componentes/layout/Navegacion';
 import Productos from './componentes/productos/Productos';
 import EditarProducto from './componentes/productos/EditarProducto';
 import NuevoProducto from './componentes/productos/NuevoProducto';
-// import Login from './componentes/auth/Login';
+import Login from './componentes/auth/Login';
 
-// import { CRMContext, CRMProvider } from './context/CRMContext';
+/** Contexto **/
+import { CatalogoContext, CatalogoProvider } from './context/catalogoContext';
 
 function App() {
-
-    // utilizar context en el componente
-    // const [ auth, guardarAuth ] = useContext(CRMContext);
-
+    const [ auth, guardarAuth ] = useContext(CatalogoContext);
 
     return (
       <Router>
           <>
-            {/*<CRMProvider value={[ auth, guardarAuth ]}> */}
+            <CatalogoProvider value={[ auth, guardarAuth ]}>
               <Header />
 
               <div className="grid contenedor contenido-principal">
@@ -35,15 +31,12 @@ function App() {
                             <Route exact path="/productos" element={<Productos />} />
                             <Route exact path="/productos/nuevo" element={<NuevoProducto />} />
                             <Route exact path="/productos/editar/:id" element={<EditarProducto />} />
-                            {/* 
 
-                            <Route exact path="/iniciar-sesion" component={Login} />
-                         */}
-
+                            <Route exact path="/iniciar-sesion" element={<Login />} />
                         </Routes>
                   </main>
               </div>
-            {/*</CRMProvider>*/}
+            </CatalogoProvider>
           </>
       </Router>
     )
