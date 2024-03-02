@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import clienteAxios from '../../config/axios';
@@ -33,7 +32,7 @@ function Producto({producto}) {
         })
     }
 
-    const {_id, nombre, descripcion, precio, imagen } = producto;
+    const {_id, nombre, descripcion, precio } = producto;
 
     return (
         <li className="producto">
@@ -41,9 +40,6 @@ function Producto({producto}) {
                 <p className="nombre">{nombre}</p>
                 <p className="descripcion">{descripcion}</p>
                 <p className="precio">$ {precio}</p>
-                { imagen ? (
-                    <img src={`http://localhost:5000/${imagen}`} alt="imagen" />
-                ) : null  }
             </div>
             <div className="acciones">
                 <Link to={`/productos/editar/${_id}`} className="btn btn-azul">

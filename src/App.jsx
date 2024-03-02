@@ -1,4 +1,4 @@
-import React, {Fragment, useContext} from 'react';
+import { useContext } from 'react';
 
 // Routing
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -23,7 +23,7 @@ function App() {
 
     return (
       <Router>
-          <Fragment>
+          <>
             {/*<CRMProvider value={[ auth, guardarAuth ]}> */}
               <Header />
 
@@ -44,7 +44,7 @@ function App() {
                   </main>
               </div>
             {/*</CRMProvider>*/}
-          </Fragment>
+          </>
       </Router>
     )
 }

@@ -438,6 +438,19 @@ h3.resumen-titulo {
     color: var(--azul);
 }
 
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+opacity: 0;
+}
+
 .login {
     max-width: 520px;
     margin: 15rem  auto 0 auto;
@@ -448,6 +461,6 @@ h3.resumen-titulo {
 .login h2 {
     text-align: center;
 }
-.login .contenedor-formulario {
+/* .login .contenedor-formulario {
 
-}
+} */

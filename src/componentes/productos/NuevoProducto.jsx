@@ -1,35 +1,22 @@
-import React, {useState, Fragment} from 'react';
-import { useNavigate  } from 'react-router-dom';
+import { useState } from 'react';
+// import { useNavigate  } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import clienteAxios from '../../config/axios';
 
-function NuevoProducto(props) {
-    const navigate = useNavigate();
+function NuevoProducto({ cerrarModal }) {
+    //const navigate = useNavigate();
     const [producto, guardarProducto] = useState({
         nombre: '',
         descripcion: '',
         precio: ''
     });
-    const [archivo, guardarArchivo] = useState('');
 
     // Almacena el nuevo producto en la base de datos.
     const agregarProducto = async e => {
         e.preventDefault();
 
-        // Crear un formdata.
-        const formData = new FormData();
-        formData.append('nombre', producto.nombre);
-        formData.append('descripcion', producto.descripcion);
-        formData.append('precio', producto.precio);
-        formData.append('imagen', archivo);
-
-        // Almacenarlo en la BD.
         try {
-            const res = await clienteAxios.post('/productos', formData, {
-                headers: {
-                    'Content-Type' : 'multipart/form-data'
-                }
-            } );
+            const res = await clienteAxios.post('/productos', producto);
 
             // Lanzar una alerta.
             if(res.status === 200) {
@@ -41,7 +28,9 @@ function NuevoProducto(props) {
             }
 
             // Redireccionar.
-            navigate('/productos');
+            //navigate('/productos');
+
+            cerrarModal();
 
         } catch (error) {
             console.log(error);
@@ -64,13 +53,8 @@ function NuevoProducto(props) {
         })
     }
 
-    // Coloca la imagen en el state.
-    const leerArchivo = e => {
-        guardarArchivo( e.target.files[0] );
-    }
-
     return (
-        <Fragment>
+        <>
             <h2>Nuevo Producto</h2>
 
             <form
@@ -110,20 +94,15 @@ function NuevoProducto(props) {
                     />
                 </div>
 
-                <div className="campo">
-                    <label>Imagen:</label>
-                    <input 
-                        type="file"  
-                        name="imagen"
-                        onChange={leerArchivo}
-                    />
-                </div>
-
                 <div className="enviar">
-                        <input type="submit" className="btn btn-azul" value="Agregar Producto" />
+                        <input 
+                            type="submit" 
+                            className="btn btn-azul" 
+                            value="Agregar Producto" 
+                        />
                 </div>
             </form>
-        </Fragment>
+        </>
     )
 }
 export default NuevoProducto;
