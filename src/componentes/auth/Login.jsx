@@ -1,13 +1,24 @@
-import React, {useState, useContext} from 'react';
+import {useState, useContext} from 'react';
+import Modal from 'react-modal';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import clienteAxios from '../../config/axios';
 import { CatalogoContext } from '../../context/catalogoContext';
+import CrearCuenta from './CrearCuenta';
 
 function Login(props){
     const navigate = useNavigate();
+    const [modalOpen, setModalOpen] = useState(false);
     const [auth, guardarAuth] = useContext(CatalogoContext);
     const [ credenciales, guardarCredenciales] = useState({});
+
+    const abrirModal = () => {
+        setModalOpen(true);
+    };
+
+    const cerrarModal = () => {
+        setModalOpen(false);
+    };
 
     // Iniciar sesión en el servidor.
     const iniciarSesion = async e => {
@@ -43,7 +54,9 @@ function Login(props){
             console.error(error);
 
             if(error.response) {
-                mensaje = error.response.data.mensaje;
+                mensaje = error.response.data.mensaje + 
+                    (error.response.data.detalle ? 
+                        ': ' + error.response.data.detalle.join(', ') : '');
             }
 
             Swal.fire({
@@ -63,44 +76,69 @@ function Login(props){
     }
 
     return(
+        <>
+            <div className="login">
+                <h2>Iniciar Sesión</h2>
 
-        <div className="login">
-            <h2>Iniciar Sesión</h2>
+                <div className="contenedor-formulario">
+                    <form
+                        onSubmit={iniciarSesion}
+                    >
 
-            <div className="contenedor-formulario">
-                <form
-                    onSubmit={iniciarSesion}
-                >
+                        <div className="campo">
+                            <label>Email</label>
+                            <input 
+                                type="text"
+                                name="email"
+                                placeholder="Email para Iniciar Sesión"
+                                required
+                                onChange={leerDatos}
+                            />
+                        </div>
 
-                    <div className="campo">
-                        <label>Email</label>
+                        <div className="campo">
+                            <label>Password</label>
+                            <input 
+                                type="password"
+                                name="password"
+                                placeholder="Password para Iniciar Sesión"
+                                required
+                                onChange={leerDatos}
+                            />
+                        </div>
+
                         <input 
-                            type="text"
-                            name="email"
-                            placeholder="Email para Iniciar Sesión"
-                            required
-                            onChange={leerDatos}
-                        />
+                            type="submit" 
+                            value="Iniciar Sesión" 
+                            className="btn btn-verde btn-block" />
+                    </form>
+                    <br />
+                    <div className="contenedor">
+                        Si aún no estás registrado, <a href="#" onClick={abrirModal} style={{color: "blue"}}>crea tu cuenta</a>.
                     </div>
-
-                    <div className="campo">
-                        <label>Password</label>
-                        <input 
-                            type="password"
-                            name="password"
-                            placeholder="Password para Iniciar Sesión"
-                            required
-                            onChange={leerDatos}
-                        />
-                    </div>
-
-                    <input 
-                        type="submit" 
-                        value="Iniciar Sesión" 
-                        className="btn btn-verde btn-block" />
-                </form>
+                </div>
             </div>
-        </div>
+            <Modal 
+                isOpen={modalOpen} 
+                onRequestClose={cerrarModal}
+                style={{ content: {width: '55%', margin: 'auto', transition: 'opacity 300ms ease-in-out', position: 'relative'}}}
+            >
+                <button 
+                    className="btn btn-naranja btn-cerrar"
+                    onClick={() => setModalOpen(false)}
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '17px',
+                        width: '40px',
+                        height: '45px'
+                    }}
+                >
+                    <i className="fas fa-times"></i>
+                </button>
+                <CrearCuenta cerrarModal={cerrarModal} />
+            </Modal>
+        </>
     )
 }
 

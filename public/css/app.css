@@ -390,6 +390,10 @@ h3.resumen-titulo {
     color: var(--azul);
 }
 
+.modal {
+    content: "width: '55%', height: '80%', margin: 'auto', transition: 'opacity 300ms ease-in-out', position: 'relative'";
+}
+
 .ReactModal__Overlay {
     opacity: 0;
     transition: opacity 300ms ease-in-out;
@@ -405,7 +409,7 @@ opacity: 0;
 
 .login {
     max-width: 520px;
-    margin: 15rem  auto 0 auto;
+    margin: 10rem  auto 0 auto;
     padding: 4rem 2rem;
     background-color: var(--grisClaro);
     border-radius: 1.5rem;

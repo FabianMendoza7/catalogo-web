@@ -21,7 +21,7 @@ function Producto({producto}) {
             cancelButtonText : 'No, Cancelar'
         }).then((result) => {
             if (result.value) {
-              // eliminar en la rest api
+              // Eliminar en la rest api.
               clienteAxios.delete(`/productos/${id}`, {
                     headers: {
                         Authorization : `Bearer ${auth.token}`

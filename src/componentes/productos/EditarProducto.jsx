@@ -60,7 +60,9 @@ function EditarProducto(props) {
             console.error(error);
 
             if(error.response) {
-                mensaje = error.response.data.mensaje;
+                mensaje = error.response.data.mensaje + 
+                    (error.response.data.detalle ? 
+                        ': ' + error.response.data.detalle.join(', ') : '');
             }
 
             // Lanzar alerta.

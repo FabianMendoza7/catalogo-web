@@ -43,8 +43,8 @@ function NuevoProducto({ cerrarModal }) {
 
             if(error.response) {
                 mensaje = error.response.data.mensaje + 
-                    error.response.data.detalle ? 
-                        error.response.data.detalle.join(', ') : '';
+                    (error.response.data.detalle ? 
+                        ': ' + error.response.data.detalle.join(', ') : '');
             }
 
             // Lanzar alerta.

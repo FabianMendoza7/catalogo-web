@@ -56,7 +56,7 @@ function Productos() {
     }
 
     // Spinner de carga.
-    if(!productos.length) return <Spinner /> 
+    // if(!productos.length) return <Spinner /> 
 
     return (
         <>
@@ -65,21 +65,28 @@ function Productos() {
             <Link to="#" className="btn btn-verde nuevo-producto" onClick={abrirModal}>
                 <i className="fas fa-plus-circle"></i>
                 Nuevo Producto
-            </Link>            
+            </Link>  
 
-            <ul className="listado-productos">
-                {productos.map(producto => (
-                    <Producto 
-                        key={producto._id}
-                        producto={producto}
-                    />
-                ))}
-            </ul>
+            {productos.length > 0 
+            ?          
+                <ul className="listado-productos">
+                    {productos.map(producto => (
+                        <Producto 
+                            key={producto._id}
+                            producto={producto}
+                        />
+                    ))}
+                </ul>
+            : 
+                <div style={{marginTop: 40}}>
+                    <h3>No hay productos en el catálogo</h3>
+                </div>
+            }
 
             <Modal 
                 isOpen={modalOpen} 
                 onRequestClose={cerrarModal}
-                style={{ content: { width: '55%', height: '80%', margin: 'auto', transition: 'opacity 300ms ease-in-out', position: 'relative' } }}
+                style={{ content: {width: '55%', height: '80%', margin: 'auto', transition: 'opacity 300ms ease-in-out', position: 'relative'}}}
             >
                 <button 
                     className="btn btn-naranja btn-cerrar"
@@ -90,7 +97,8 @@ function Productos() {
                         right: '17px',
                         width: '40px',
                         height: '45px'
-                    }}>
+                    }}
+                >
                     <i className="fas fa-times"></i>
                 </button>
                 <NuevoProducto cerrarModal={cerrarModal} />
