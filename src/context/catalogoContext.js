@@ -6,7 +6,7 @@ const CatalogoProvider = props => {
     // Definir el state inicial.
     const [auth, guardarAuth ] = useState({
         token: '',
-        auth: false
+        isAuth: false
     });
 
     return (

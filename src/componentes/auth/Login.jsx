@@ -24,7 +24,7 @@ function Login(props){
             // Guardar el token en el state.
             guardarAuth({
                 token, 
-                auth: true
+                isAuth: true
             });
 
             // Mostrar alerta.
@@ -32,19 +32,25 @@ function Login(props){
                 'Login Correcto',
                 'Has iniciado Sesión',
                 'success'
-            )
+            );
 
             // Redireccionar al home.
             navigate('/');
 
             
         } catch (error) {
-            console.log(error);
+            let mensaje = "Error inesperado";
+            console.error(error);
+
+            if(error.response) {
+                mensaje = error.response.data.mensaje;
+            }
+
             Swal.fire({
                 type: 'error',
                 title: 'Hubo un error',
-                text: error.response.data.mensaje
-            })
+                text: mensaje
+            });            
         }
     }
 

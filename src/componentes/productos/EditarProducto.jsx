@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams  } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import clienteAxios from '../../config/axios';
+import { CatalogoContext } from '../../context/catalogoContext';
 import Spinner from '../layout/Spinner';
 
 function EditarProducto(props) {
     const navigate = useNavigate();
-
+    const [auth, guardarAuth ] = useContext(CatalogoContext);
+    
     // Obtener el ID.
     const { id } = useParams();
     const [ producto, guardarProducto ] = useState({
@@ -19,7 +21,11 @@ function EditarProducto(props) {
     useEffect(() => {
          // Consultar la api para traer el producto a editar.
         const consultarAPI = async () => {
-            const productoConsulta = await clienteAxios.get(`/productos/${id}`);
+            const productoConsulta = await clienteAxios.get(`/productos/${id}`, {
+                headers: {
+                    Authorization : `Bearer ${auth.token}`
+                }
+            });
             guardarProducto(productoConsulta.data);
         }
 
@@ -29,9 +35,13 @@ function EditarProducto(props) {
     // Edita un Producto en la base de datos.
     const editarProducto = async e => {
         e.preventDefault();
-
+        
         try {
-            const res = await clienteAxios.put(`/productos/${id}`, producto);
+            const res = await clienteAxios.put(`/productos/${id}`, producto, {
+                headers: {
+                    Authorization : `Bearer ${auth.token}`
+                }
+            });
 
             // Lanzar una alerta.
             if(res.status === 200) {
@@ -46,13 +56,18 @@ function EditarProducto(props) {
             navigate('/productos');
 
         } catch (error) {
-            console.log(error);
+            let mensaje = "Error inesperado";
+            console.error(error);
+
+            if(error.response) {
+                mensaje = error.response.data.mensaje;
+            }
 
             // Lanzar alerta.
             Swal.fire({
                 type:'error',
                 title: 'Hubo un error',
-                text: 'Vuelva a intentarlo'
+                text: mensaje
             })
         }
     }
@@ -66,8 +81,15 @@ function EditarProducto(props) {
         })
     }
 
+    // Verificar si el usuario está autenticado o no.
+    if(!auth.isAuth) {
+        console.log(">>> auth.isAuth", auth.isAuth);
+
+        navigate('/iniciar-sesion');
+    }    
+
     // Extraer los valores del state.
-    const { nombre, descripcion, precio } = producto;
+    const { nombre, descripcion, precio } = producto;
 
     if(!nombre) return <Spinner />
 
@@ -116,11 +138,11 @@ function EditarProducto(props) {
                 </div>
 
                 <div className="enviar">
-                        <input 
-                            type="submit" 
-                            className="btn btn-azul" 
-                            value="Editar Producto" 
-                        />
+                    <input 
+                        type="submit" 
+                        className="btn btn-azul" 
+                        value="Editar Producto" 
+                    />
                 </div>
             </form>
         </>

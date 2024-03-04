@@ -96,7 +96,7 @@ h2 {
 .btn:disabled {
     opacity: .4;
 }
-.nvo-cliente {
+.btn-header {
     padding: 2rem 4rem;
     width: auto;
 }
@@ -174,20 +174,10 @@ h2 {
     left: 0;
     top: 1rem;
 }
-.navegacion a.clientes::before {
-    font-family: "Font Awesome 5 Free"; 
-    font-weight: 900; 
-    content: "\f0c0";
-}
 .navegacion a.productos::before {
     font-family: "Font Awesome 5 Free"; 
     font-weight: 900; 
     content: "\f468";
-}
-.navegacion a.pedidos::before {
-    font-family: "Font Awesome 5 Free"; 
-    font-weight: 900; 
-    content: "\f02d";
 }
 
 /** Caja **/
@@ -207,48 +197,34 @@ h2 {
     border-radius: 1rem;
 }
 
-/** Mostrar Clientes **/
-.listado-clientes,
-.listado-productos,
-.listado-pedidos {
+/** Mostrar Productos **/
+.listado-productos {
     list-style: none;
     padding: 0;
 }
-.cliente,
 .producto,
-.pedido,
 .resumen li {
     padding: 2rem 0;
     border-bottom: 1px solid var(--grisClaro);
 }
-.cliente:last-of-type,
-.producto:last-of-type, 
-.pedido:last-of-type{
+.producto:last-of-type {
     border-bottom: 0;
 }
 @media (min-width: 768px) {
-    .cliente,
-    .producto,
-    .pedido {
+    .producto {
         display: flex;
         justify-content: space-between;
     }
-    .cliente .info-cliente,
-    .producto .info-producto,
-    .pedido .info-pedido {
+    .producto .info-producto {
         flex: 0 0 calc(70% - 1rem);
     }
-    .cliente .acciones,
-    .producto .acciones,
-    .pedido .acciones {
+    .producto .acciones {
         flex: 0 0 calc(30% - 1rem);
         padding: 2rem 0;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
     } 
-    
-    .pedido .acciones,
     .producto .acciones  {
         justify-content: flex-start;
     }
@@ -263,54 +239,30 @@ h2 {
 }
 
 @media (min-width: 768px) {
-    .cliente .acciones a:last-of-type,
-    .producto .acciones a:last-of-type, 
-    .pedido .acciones a:last-of-type {
+    .producto .acciones a:last-of-type {
         margin-bottom: 0;
     } 
 }
-.cliente p,
-.producto p,
-.pedido p {
+.producto p {
     margin: 2rem 0;
 }
-.cliente .nombre,
 .producto .nombre,
-.pedido .id,
 .resumen .nombre {
     font-size: 2.4rem;
     color: var(--azul);
 }
-.cliente .empresa,
-.pedido .nombre, 
+.empresa,
 .resumen .precio{
     font-weight: 700;
     font-size: 2rem;
 }
-.pedido .total {
+.total {
     font-weight: 700;
     color: var(--azul);
     font-size: 2.4rem;
 }
-.pedido .productos {
+.productos {
     font-weight: 700;
-}
-.articulos-pedido {
-    padding: 2rem;
-    background-color: #f1f1f1;
-}
-.pedido ul  {
-    list-style: none;
-    padding: 0;
-}
-.pedido ul li:first-of-type {
-    border-top: none;
-}
-.pedido ul li:last-of-type {
-    border-bottom: none;
-}
-.pedido ul li {
-    border-top: 1px solid #e1e1e1;
 }
 
 /** Formularios **/
@@ -461,6 +413,3 @@ opacity: 0;
 .login h2 {
     text-align: center;
 }
-/* .login .contenedor-formulario {
-
-} */

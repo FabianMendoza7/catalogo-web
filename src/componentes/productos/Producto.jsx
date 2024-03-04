@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import clienteAxios from '../../config/axios';
+import { CatalogoContext } from '../../context/catalogoContext';
 
 function Producto({producto}) {
+    const navigate = useNavigate();
+    const [auth, guardarAuth ] = useContext(CatalogoContext);
 
     // Elimina un producto.
     const eliminarProducto = id => {
@@ -18,7 +22,11 @@ function Producto({producto}) {
         }).then((result) => {
             if (result.value) {
               // eliminar en la rest api
-              clienteAxios.delete(`/productos/${id}`)
+              clienteAxios.delete(`/productos/${id}`, {
+                    headers: {
+                        Authorization : `Bearer ${auth.token}`
+                    }
+                })
                 .then(res => {
                     if(res.status === 200) {
                         Swal.fire(
@@ -31,6 +39,11 @@ function Producto({producto}) {
             }
         })
     }
+
+    // Verificar si el usuario está autenticado o no.
+    if(!auth.isAuth) {
+        navigate('/iniciar-sesion');
+    }    
 
     const {_id, nombre, descripcion, precio } = producto;
 

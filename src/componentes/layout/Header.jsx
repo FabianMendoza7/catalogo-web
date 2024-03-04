@@ -1,25 +1,22 @@
-import React, {useContext} from 'react';
-
-// import { CRMContext } from '../../context/CRMContext';
-// import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { CatalogoContext } from '../../context/catalogoContext';
 
 const Header = (props) => {
+    const navigate = useNavigate();
+    const [auth, guardarAuth] = useContext(CatalogoContext);
 
-    //const [auth, guardarAuth] = useContext(CRMContext);
+    const cerrarSesion = () => {
+        guardarAuth({
+            token: '',
+            isAuth: false
+        });
 
-    // const cerrarSesion = () => {
-    //     // auth.auth = false y el token se remueve
-    //     guardarAuth({
-    //         token: '',
-    //         auth: false
-    //     });
+        localStorage.setItem('token', '');
 
-    //     localStorage.setItem('token', '');
-
-    //     // Redireccionar.
-    //     const navigate = useNavigate();
-    //     navigate('/iniciar-sesion');
-    // }
+        // Redireccionar al inicio de sesión.
+        navigate('/iniciar-sesion');
+    }
 
     return (
         <header className="barra">
@@ -27,25 +24,29 @@ const Header = (props) => {
                 <div className="contenido-barra">
                     <h1>Catálogo de Productos Médicos</h1>
 
-
-                    {/* { auth.auth ? (
+                    { auth.isAuth ? (
                         <button 
                             type="button"
-                            className="btn btn-rojo"
-                            //onClick={cerrarSesion}
+                            className="btn btn-naranja"
+                            onClick={cerrarSesion}
                         >
                             <i className="far fa-times-circle"></i>
                             Cerrar Sesión
                         </button>
-                    ) : null } */}
-                    
+                    ) : 
+                        <Link 
+                            to="/iniciar-sesion" 
+                            className="btn btn-verde"
+                        >
+                            <i className="fas fa-plus-circle"></i>
+                            Iniciar Sesión
+                        </Link>                 
+                    }
                 
                 </div>
-                
             </div>
         </header>
     )
-
 }
 
 export default Header;

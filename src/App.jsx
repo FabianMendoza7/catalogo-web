@@ -8,8 +8,9 @@ import Navegacion from './componentes/layout/Navegacion';
 /** Componentes */
 import Productos from './componentes/productos/Productos';
 import EditarProducto from './componentes/productos/EditarProducto';
-import NuevoProducto from './componentes/productos/NuevoProducto';
 import Login from './componentes/auth/Login';
+import Home from './componentes/Home';
+import Pagina404 from './componentes/Pagina404';
 
 /** Contexto **/
 import { CatalogoContext, CatalogoProvider } from './context/catalogoContext';
@@ -28,11 +29,11 @@ function App() {
 
                   <main className="caja-contenido col-9">
                         <Routes>
+                            <Route exact path="/" element={<Home />} />
                             <Route exact path="/productos" element={<Productos />} />
-                            <Route exact path="/productos/nuevo" element={<NuevoProducto />} />
                             <Route exact path="/productos/editar/:id" element={<EditarProducto />} />
-
                             <Route exact path="/iniciar-sesion" element={<Login />} />
+                            <Route path="*" element={<Pagina404 />} />
                         </Routes>
                   </main>
               </div>

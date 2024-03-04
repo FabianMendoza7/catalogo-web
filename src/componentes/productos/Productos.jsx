@@ -11,7 +11,7 @@ function Productos() {
     const [productos, guardarProductos] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
-    const [auth, guardarAuth ] = useContext(CatalogoContext );
+    const [auth, guardarAuth ] = useContext(CatalogoContext);
 
     const abrirModal = () => {
         setModalOpen(true);
@@ -51,7 +51,7 @@ function Productos() {
     }, [productos]);
 
     // Requerir iniciar sesión si el state está como false.
-    if(!auth.auth) {
+    if(!auth.isAuth) {
         navigate('/iniciar-sesion');
     }
 
@@ -62,7 +62,7 @@ function Productos() {
         <>
             <h2>Productos</h2>
 
-            <Link to="#" className="btn btn-verde nvo-cliente" onClick={abrirModal}>
+            <Link to="#" className="btn btn-verde nuevo-producto" onClick={abrirModal}>
                 <i className="fas fa-plus-circle"></i>
                 Nuevo Producto
             </Link>            
@@ -82,7 +82,7 @@ function Productos() {
                 style={{ content: { width: '55%', height: '80%', margin: 'auto', transition: 'opacity 300ms ease-in-out', position: 'relative' } }}
             >
                 <button 
-                    className="btn btn-amarillo btn-cerrar"
+                    className="btn btn-naranja btn-cerrar"
                     onClick={() => setModalOpen(false)}
                     style={{
                         position: 'absolute',
