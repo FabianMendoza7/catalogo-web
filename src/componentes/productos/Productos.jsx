@@ -11,7 +11,7 @@ function Productos() {
     const [productos, guardarProductos] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
-    const [auth, guardarAuth ] = useContext(CatalogoContext);
+    const [auth, _guardarAuth ] = useContext(CatalogoContext);
 
     const abrirModal = () => {
         setModalOpen(true);
@@ -55,8 +55,8 @@ function Productos() {
         navigate('/iniciar-sesion');
     }
 
-    // Spinner de carga.
-    // if(!productos.length) return <Spinner /> 
+    // TODO: Mejorar condición Spinner de carga.
+    if(!productos.length > 9999) return <Spinner /> 
 
     return (
         <>

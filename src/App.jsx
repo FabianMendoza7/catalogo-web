@@ -11,6 +11,10 @@ import EditarProducto from './componentes/productos/EditarProducto';
 import Login from './componentes/auth/Login';
 import Home from './componentes/Home';
 import Pagina404 from './componentes/Pagina404';
+// import * as dotenv from 'dotenv';
+
+// // Obtener variables de entorno.
+// dotenv.config({ path: '../env' });
 
 /** Contexto **/
 import { CatalogoContext, CatalogoProvider } from './context/catalogoContext';

@@ -9,7 +9,7 @@ import CrearCuenta from './CrearCuenta';
 function Login(props){
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
-    const [auth, guardarAuth] = useContext(CatalogoContext);
+    const [_auth, guardarAuth] = useContext(CatalogoContext);
     const [ credenciales, guardarCredenciales] = useState({});
 
     const abrirModal = () => {

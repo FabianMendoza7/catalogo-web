@@ -1,9 +1,14 @@
+@font-face{
+    font-family: PoppinsCustom;
+    src: url(../fonts/poppins/Poppins-Regular.ttf);
+}
+
 :root {
-    --fontTexto:  'Raleway', sans-serif;
-    --fontHeading: 'Staatliches', cursive;
+    --fontTexto:  PoppinsCustom, sans-serif;
+    --fontHeading: PoppinsCustom, cursive;
 
     /** Colores **/
-    --azul : #00487C;
+    --azul : #000E99;
     --rojo : #A01C48;
     --naranja : #F58549;
     --amarillo: #ECA400;
@@ -46,6 +51,12 @@ h2 {
     margin: 0 auto;
     width: 95%;
 }
+.homepage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh; /* 100% de la altura de la ventana gráfica (viewport height) */
+}
 
 /** BOTONES **/
 .btn-block {
@@ -64,6 +75,7 @@ h2 {
     border: none;
     flex: 0 0 100%;
     width: 100%;
+    border-radius: 5px;
 }
 .btn:hover {
     cursor: pointer;
@@ -174,6 +186,11 @@ h2 {
     left: 0;
     top: 1rem;
 }
+.navegacion a.home::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f015";
+}
 .navegacion a.productos::before {
     font-family: "Font Awesome 5 Free"; 
     font-weight: 900; 
@@ -260,6 +277,9 @@ h2 {
     font-weight: 700;
     color: var(--azul);
     font-size: 2.4rem;
+}
+.home {
+    font-weight: 700;
 }
 .productos {
     font-weight: 700;
@@ -417,3 +437,23 @@ opacity: 0;
 .login h2 {
     text-align: center;
 }
+
+/* Estilo para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 5px; /* Ancho de la barra */
+  }
+  
+  /* Estilo para el riel de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background: #dcdcdd; /* Color del riel */
+  }
+  
+  /* Estilo para el pulgar de la barra de desplazamiento (la parte móvil) */
+  ::-webkit-scrollbar-thumb {
+    background: #626364; /* Color del pulgar */
+  }
+  
+  /* Estilo para el pulgar al pasar el ratón sobre la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0b4370;
+  }

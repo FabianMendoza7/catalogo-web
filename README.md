@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Catalogo-WEB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Repositorio del Proyecto Catalogo-WEB (Frontend) desarrollado con React.
 
-## Available Scripts
+<a href="https://github.com/FabianMendoza7/catalogo-web/">
+    Visita el repositorio
+</a>
 
-In the project directory, you can run:
+<a href="https://greencode.deno.dev/">
+    Visita mi blog personal
+</a>
 
-### `npm start`
+## Justificación del Stack tecnológico
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React: Biblioteca de JavaScript que se utiliza para construir interfaces de usuario. Su enfoque basado en componentes permite un desarrollo modular y reutilizable. La gestión eficiente del estado, la facilidad de integración con otras bibliotecas y su enfoque declarativo hacen de React una elección popular para construir interfaces de usuario dinámicas y escalables..
+  
+- React-Modal: React-Modal es una biblioteca que facilita la creación de modales en aplicaciones React. Los modales son útiles para mostrar información adicional, confirmaciones o formularios sin necesidad de navegar a otra página. Al ser fácil de integrar con React, React-Modal simplifica la creación y gestión de ventanas modales de manera eficiente.
+  
+- React-Router-Dom: Biblioteca para la navegación en aplicaciones React. Permite la gestión de rutas y navegación entre diferentes componentes sin tener que recargar la página completa. Facilita la creación de aplicaciones de página única (SPA) al proporcionar una forma declarativa de definir las rutas y manejar la navegación del usuario.
+  
+- SweetAlert2: Biblioteca de JavaScript que proporciona ventanas modales personalizadas y atractivas. En comparación con los modales estándar del navegador, SweetAlert2 ofrece una experiencia de usuario mejorada y más estilizada. Es útil para mostrar mensajes de confirmación, alertas o mensajes informativos de manera visualmente atractiva.
+  
+- DotEnv: Se utiliza para cargar variables de entorno desde un archivo .env. Esto es útil para gestionar configuraciones sensibles, pero en nuestro caso, facilita la gestión de diferentes configuraciones en entornos de desarrollo y producción.

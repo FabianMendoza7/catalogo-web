@@ -6,7 +6,7 @@ import { CatalogoContext } from '../../context/catalogoContext';
 
 function NuevoProducto({ cerrarModal }) {
     const navigate = useNavigate();
-    const [auth, guardarAuth ] = useContext(CatalogoContext);
+    const [auth, _guardarAuth ] = useContext(CatalogoContext);
     const [producto, guardarProducto] = useState({
         nombre: '',
         descripcion: '',

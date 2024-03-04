@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner';
 
 function EditarProducto(props) {
     const navigate = useNavigate();
-    const [auth, guardarAuth ] = useContext(CatalogoContext);
+    const [auth, _guardarAuth ] = useContext(CatalogoContext);
     
     // Obtener el ID.
     const { id } = useParams();
@@ -85,8 +85,6 @@ function EditarProducto(props) {
 
     // Verificar si el usuario está autenticado o no.
     if(!auth.isAuth) {
-        console.log(">>> auth.isAuth", auth.isAuth);
-
         navigate('/iniciar-sesion');
     }    
 

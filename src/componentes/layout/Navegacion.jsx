@@ -6,7 +6,7 @@ const Navegacion = () => {
             <h2>Administración</h2>
 
             <nav className="navegacion">
-                <Link to={"/"} className="productos">Home</Link>
+                <Link to={"/"} className="home">Home</Link>
                 <Link to={"/productos"} className="productos">Productos</Link>
             </nav>
         </aside>

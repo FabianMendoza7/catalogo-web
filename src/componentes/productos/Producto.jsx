@@ -6,7 +6,7 @@ import { CatalogoContext } from '../../context/catalogoContext';
 
 function Producto({producto}) {
     const navigate = useNavigate();
-    const [auth, guardarAuth ] = useContext(CatalogoContext);
+    const [auth, _guardarAuth ] = useContext(CatalogoContext);
 
     // Elimina un producto.
     const eliminarProducto = id => {
